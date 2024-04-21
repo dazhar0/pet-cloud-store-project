@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head lang="en" th:replace="unique/head :: head"></head>
+
+<body>
+	<div lang="en" th:replace="unique/header :: header"></div>
+	<div
+		class="unique-pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+		<h1 class="unique-display-4">Explore Our Product Selection</h1>
+		<table class="table">
+			<div th:if="${unique_products} != null">
+				<tr th:each="unique_product, iStat : ${unique_products}">
+					<td style="text-align: center !important;">
+						<center><img class="unique-thumbnail" th:src="@{${unique_product.photoURL}}" /></center>
+						<div style="margin-bottom: 20px;">
+							<span style="font-weight: bold;" th:text="${unique_product.name}" />
+						</div>
+						<div style="margin-bottom: 20px;">
+							<a th:onclick="'unique_updatecart(\'' + ${unique_product.id} + '\');'"
+								style="font-weight: bold; text-decoration: none; color: black;">
+								<button class="unique-btn btn btn-outline-primary" type="submit">Add
+									to Cart</button>
+							</a>
+						</div>
+					</td>
+				</tr>
+			</div>
+		</table>
+	</div>
+	<form action="unique_updatecart" method="post" id="unique_addProduct">
+		<input type="hidden" th:if="${unique_csrf}" th:name="${unique_csrf.parameterName}"
+			th:value="${unique_csrf.token}" /> <input type="hidden" id="unique_productId"
+			name="productId" value="">
+	</form>
+	<div lang="en" th:replace="unique/footer :: footer"></div>
+	<div lang="en" th:replace="unique/disclaimer :: disclaimer"></div>
+	<script language="javascript">
+			function unique_updatecart(productId) {
+				document.getElementById('unique_productId').value = productId;
+				document.getElementById('unique_addProduct').submit();
+			}
+		</script>
+</body>
+
+</html>

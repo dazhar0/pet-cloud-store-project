@@ -1,0 +1,97 @@
+# Deploy to Azure Kubernetes Service
+# Build and push image to Azure Container Registry; Deploy to Azure Kubernetes Service
+# Documentation: https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - petcloudstore/petcloudstoreorderservice/*
+
+resources:
+  - repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: 'azurepetstorecr'
+  imageRepository: 'petstoreorderservice'
+  containerRegistry: crpetcloudstore.azurecr.io
+  dockerfilePath: 'petcloudstore/petcloudstoreorderservice/Dockerfile'
+  tag: '$(Build.BuildId)'
+  imagePullSecret: '$(crImagePullSecretGlobalV2)'
+
+stages:
+  - stage: Build
+    displayName: Build Stage
+    jobs: 
+      - job: BuildApp
+        displayName: Build Application
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - task: Maven@3
+            continueOnError: true 
+            displayName: Build Spring Boot Jar
+            inputs:
+              mavenPomFile: 'petcloudstore/petcloudstoreorderservice/pom.xml'
+              mavenOptions: '-Xmx3072m'
+              javaHomeOption: 'JDKVersion'
+              jdkVersionOption: '8'
+              jdkArchitectureOption: 'x64'
+              publishJUnitResults: true
+              testResultsFiles: 'petcloudstore/petcloudstoreorderservice/target/surefire-reports/TEST-*.xml'
+              codeCoverageToolOption: 'jaCoCo'
+              goals: 'package'
+          - task: Docker@2
+            displayName: Build and push image to container registry
+            inputs:
+              command: buildAndPush
+              repository: $(imageRepository)
+              dockerfile: $(dockerfilePath)
+              containerRegistry: $(dockerRegistryServiceConnection)
+              tags: |
+                $(tag)
+                latest
+          - upload: manifests
+            artifact: manifests
+
+  - stage: Deploy
+    displayName: Deploy Stage
+    dependsOn: Build
+    jobs:
+      - deployment: DeployApp
+        displayName: Deploy Application
+        pool:
+          vmImage: 'ubuntu-latest'
+        environment: 'Development'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: KubernetesManifest@0
+                  displayName: Deploy to Kubernetes cluster
+                  inputs:
+                    action: deploy
+                    kubernetesServiceConnection: azurepetstoreservices-akscluster
+                    namespace: ingress-basic
+                    manifests: |
+                      $(Pipeline.Workspace)/manifests/petcloudstoreorderservice-deployment-everything-enabled.yml
+                      $(Pipeline.Workspace)/manifests/petcloudstoreorderservice-service-everything-enabled.yml
+                    imagePullSecrets: |
+                      $(imagePullSecret)
+                    containers: |
+                      $(containerRegistry)/$(imageRepository):$(tag)
+
+  - stage: Automation
+    displayName: Automation Stage
+    jobs: 
+      - job: AutomationTesting
+        displayName: Automation Testing
+        pool:
+          vmImage: 'windows-latest'
+        steps:
+          - task: TriggerPipeline@1
+            inputs:
+              serviceConnectio

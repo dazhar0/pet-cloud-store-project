@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div th:fragment="footer">
+
+		<div class="container">
+			<footer class="pt-4 my-md-5 pt-md-5 border-top">
+				<div class="row">
+					<div class="col-12 col-md">
+						<small class="d-block mb-3 text-muted">&copy; <span
+							th:text="${containerEnv.year}" style="color: #333;" /> Pet Haven<br />
+							Container Host:<br/>
+							<span th:text="${containerEnv.host}" style="color: #666;" /><br/>
+							App Version:<br/>
+							<span th:text="${containerEnv.appVer}" style="color: #666;" /></br>
+							App Date:<br/>
+							<span th:text="${containerEnv.appDate}" style="color: #666;" /></br>
+							Session ID:<br/>
+							<span th:text="${sessionId}" style="color: #666;" />
+							
+						</small>
+					</div>
+					<div class="col-6 col-md">
+						<h5 style="color: #333;">Shop Dogs</h5>
+						<ul class="list-unstyled text-small">
+							<li><a class="text-muted" href="/dogbreeds" style="color: #666;">Dog Breeds</a></li>
+							<li><a class="text-muted" href="#" style="color: #666;">Dog Toys</a></li>
+							<li><a class="text-muted" href="#" style="color: #666;">Dog Food</a></li>
+						</ul>
+					</div>
+					<div class="col-6 col-md">
+						<h5 style="color: #333;">Shop Cats</h5>
+						<ul class="list-unstyled text-small">
+							<li><a class="text-muted" href="#" style="color: #666;">Cat Toys</a></li>
+							<li><a class="text-muted" href="#" style="color: #666;">Cat Food</a></li>
+						</ul>
+					</div>
+					<div class="col-6 col-md">
+						<h5 style="color: #333;">Shop Fish</h5>
+						<ul class="list-unstyled text-small">
+							<li><a class="text-muted" href="#" style="color: #666;">Fish Toys</a></li>
+							<li><a class="text-muted" href="#" style="color: #666;">Fish Food</a></li>
+						</ul>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+	</div>
+</body>
+</html>
+

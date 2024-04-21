@@ -1,0 +1,37 @@
+# Deploy to Azure Kubernetes Service
+# Build and push image to Azure Container Registry; Deploy to Azure Kubernetes Service
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - petcloudstore/petcloudstoreautomation/*
+
+resources:
+  - repo: self
+
+stages:
+  - stage: Build
+    displayName: Perform Build & Testing
+    jobs: 
+      - job: ExecuteAutomation
+        displayName: Build & Run Automated Regression Tests
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - task: Maven@3
+            continueOnError: true 
+            displayName: Build & Run Automated Regression Tests
+            inputs:
+              mavenPomFile: 'petcloudstore/petstoreautomation/pom.xml'
+              mavenOptions: '-Xmx3072m'
+              javaHomeOption: 'JDKVersion'
+              jdkVersionOption: '8'
+              jdkArchitectureOption: 'x64'
+              publishJUnitResults: true
+              testResultsFiles: 'petcloudstore/petstoreautomation/target/surefire-reports/TEST-*.xml'
+              codeCoverageToolOption: 'jaCoCo'
+              goals: 'package'

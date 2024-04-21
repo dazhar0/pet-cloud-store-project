@@ -1,0 +1,114 @@
+<!-- Unique version of the HTML code -->
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div id="footer">
+		<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+		<script>
+			$(document).click(function (e) {    
+				if(e.target.innerHTML.includes('unique-target'))
+				{
+					e.preventDefault();
+					window.location.href = "/unique-page";
+				}
+			});
+		</script>
+	
+		<div class="custom-container">
+			<footer class="custom-footer">
+				<div class="row">
+					<div class="col-12 col-md">
+						<small class="d-block mb-3 text-muted"
+							style="text-align: left !important;">&copy; <span
+							id="yearSpan" /> Unique Pet Store<br />
+							container:<br /> <span
+							id="containerSpan" /><br />
+
+						</small>
+					</div>
+					<div class="col-6 col-md">
+						<h5>Dog Products</h5>
+						<ul class="list-unstyled text-small">
+							<li><a class="text-muted" href="/dogbreeds?category=Dog"
+								style="color: #d2e641 !important;">Shop by breeds</a></li>
+						</ul>
+					</div>
+					<div class="col-6 col-md">
+						<h5>Cat Products</h5>
+						<ul class="list-unstyled text-small">
+							<li><a class="text-muted" href="/catbreeds?category=Cat"
+								style="color: #d6d030 !important;">Shop by breeds</a></li>
+						</ul>
+					</div>
+					<div class="col-6 col-md">
+						<h5>Fish Products</h5>
+						<ul class="list-unstyled text-small">
+							<li><a class="text-muted" href="/fishbreeds?category=Fish"
+								style="color: #acdd30 !important;">Shop by breeds</a></li>
+						</ul>
+					</div>
+				</div>
+			</footer>
+		</div>
+		<div id="gaScript">
+			<script>
+				(function(i, s, o, g, r, a, m) {
+					i['GoogleAnalyticsObject'] = r;
+					i[r] = i[r] || function() {
+						(i[r].q = i[r].q || []).push(arguments)
+					}, i[r].l = 1 * new Date();
+					a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+					a.async = 1;
+					a.src = g;
+					m.parentNode.insertBefore(a, m)
+				})(window, document, 'script',
+						'//www.google-analytics.com/analytics.js', 'ga');
+				ga('create', '[[YourUniqueTrackingID]]', 'auto');
+				ga('send', 'pageview');
+			</script>
+		</div>
+		
+		<script src="https://cdn.jsdelivr.net/npm/@microsoft/signalr@3.0.0/dist/browser/signalr.min.js"></script>  
+		<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+		
+		<input type="hidden" id="signalRNegotiationURL" value="/unique-signalRNegotiationURL"/>
+		
+		<script>
+			
+			const apiBaseUrl = document.getElementById('signalRNegotiationURL').value;
+		
+			console.log(apiBaseUrl);
+			
+			if(apiBaseUrl.length > 0)
+			{
+				const data = {
+				  currentUsersUpdated: '',
+			      messages: [],
+			      ready: false
+			    }
+			
+			    const connection = new signalR.HubConnectionBuilder()
+			      .withUrl(`${apiBaseUrl}/signalr`)
+			      .withAutomaticReconnect()
+			      .configureLogging(signalR.LogLevel.Information)
+			      .build()
+			
+			    connection.on('currentUsersUpdated', currentUsersUpdated)
+			
+			    connection.start()
+			      .then(() => data.ready = true)
+			      .catch(console.error)
+			
+			    let counter = 0
+			    function currentUsersUpdated(message) {
+			    	document.getElementById('currentUsers').innerHTML=message;
+			      	data.messages.unshift(message)
+			    }
+			}
+		</script>
+
+	</div>
+</body>
+</html>
