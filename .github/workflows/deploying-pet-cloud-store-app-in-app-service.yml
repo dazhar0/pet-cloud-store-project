@@ -49,3 +49,5 @@ jobs:
         docker push ${{ env.AZURE_CONTAINER_REGISTRY }}/petstoreapp:${{ github.sha }}
         docker push  ${{ env.AZURE_CONTAINER_REGISTRY }}/petstoreapp:latest
       
+
+        
