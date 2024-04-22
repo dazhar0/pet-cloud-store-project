@@ -3,7 +3,7 @@
 <head>
 </head>
 <body>
-	<div th:fragment="unique_header">
+	<div th:fragment="header">
 		<script>
 			var unique_sid = "[[${sid}]]";
 			var unique_csrf = "[[${_csrf.token}]]";
@@ -33,7 +33,7 @@
   					<a class="btn btn-outline-primary" href="/oauth2/authorization/B2C_1_signupsignin">Sign up / Sign in</a>
 	  			</div>
   			</div>
-  			<div id="unique_cartcontainer" class="cartcontainer"><a href = "/cart"><img class="cart" src="content/unique_carticon.png"/><div class="cartcount"><div id="unique_cartcount" style="margin-left:9px;margin-top:-3px;font-weight: 900;" th:text="${cartSize}" /></div></a></div>
+  			<div id="cartcontainer" class="cartcontainer"><a href = "/cart"><img class="cart" src="content/carticon.png"/><div class="cartcount"><div id="unique_cartcount" style="margin-left:9px;margin-top:-3px;font-weight: 900;" th:text="${cartSize}" /></div></a></div>
   		</div>
 	</div>
 </body>
