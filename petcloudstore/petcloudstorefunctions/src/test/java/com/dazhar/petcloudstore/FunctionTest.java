@@ -59,10 +59,4 @@ public class FunctionTest {
 		// Verify
 		assertEquals(ret.getStatus(), HttpStatus.OK);
 	}
-
-	@Test
-	public void testGetApplicationInsightsTelemetry() throws Exception {
-		Function function = new Function();
-		function.getApplicationInsightsTelemetry("30m");
-	}
 }

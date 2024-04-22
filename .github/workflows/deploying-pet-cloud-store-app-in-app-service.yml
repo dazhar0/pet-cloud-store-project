@@ -1,8 +1,8 @@
 name: Deploying Pet Cloud Store App in App Service
   
 env:
-  AZURE_CONTAINER_REGISTRY: crpetcloudstore.azurecr.io
-  AZURE_CONTAINER_REGISTRY_USERNAME: crpetcloudstore
+  AZURE_CONTAINER_REGISTRY: petcloudstore.azurecr.io
+  AZURE_CONTAINER_REGISTRY_USERNAME: petcloudstorecr
   
 on:
   push:

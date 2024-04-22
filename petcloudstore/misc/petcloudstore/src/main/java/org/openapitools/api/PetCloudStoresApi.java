@@ -5,18 +5,19 @@
  */
 package org.openapitools.api;
 
-import com.custom.model.CustomError;
-import com.custom.model.CustomPet;
+
 import io.swagger.annotations.*;
+
+import org.openapitools.model.CustomError;
+import org.openapitools.model.CustomPet;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
 import javax.validation.Valid;
-import javax.validation.constraints.*;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @javax.annotation.Generated(value = "com.custom.codegen.languages.SpringCodegen", date = "2022-04-20T10:00:00Z")
@@ -32,7 +33,7 @@ public interface PetCloudStoresApi {
     @ApiOperation(value = "Create a pet", nickname = "createCustomPets", notes = "", tags={ "pets", })
     @ApiResponses(value = { 
         @ApiResponse(code = 201, message = "Null response"),
-        @ApiResponse(code = 200, message = "unexpected error", response = CustomError.class) })
+        @ApiResponse(code = 200, message = "unexpected error", response = Error.class) })
     @RequestMapping(value = "/pets",
         produces = { "application/json" }, 
         method = RequestMethod.POST)
@@ -40,19 +41,19 @@ public interface PetCloudStoresApi {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    @ApiOperation(value = "List all pets", nickname = "listCustomPets", notes = "", response = CustomPet.class, responseContainer = "List", tags={ "pets", })
+    @ApiOperation(value = "List all pets", nickname = "listCustomPets", notes = "", response = Pets.class, responseContainer = "List", tags={ "pets", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A paged array of pets", response = CustomPet.class, responseContainer = "List"),
-        @ApiResponse(code = 200, message = "unexpected error", response = CustomError.class) })
+        @ApiResponse(code = 200, message = "A paged array of pets", response = Pets.class, responseContainer = "List"),
+        @ApiResponse(code = 200, message = "unexpected error", response = Error.class) })
     @RequestMapping(value = "/pets",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<List<CustomPet>> listCustomPets(@ApiParam(value = "How many items to return at one time (max 100)") @Valid @RequestParam(value = "limit", required = false) Integer limit) {
+    default ResponseEntity<List<Pets>> listCustomPets(@ApiParam(value = "How many items to return at one time (max 100)") @Valid @RequestParam(value = "limit", required = false) Integer limit) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
                     String exampleString = "{ \"name\" : \"name\", \"id\" : 12345, \"tag\" : \"tag\" }";
-                    CustomApiUtil.setCustomResponse(request, "application/json", exampleString);
+                    PetCloudStoreApiUtil.setCustomResponse(request, "application/json", exampleString);
                     break;
                 }
             }
@@ -72,7 +73,7 @@ public interface PetCloudStoresApi {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
                     String exampleString = "{ \"name\" : \"name\", \"id\" : 12345, \"tag\" : \"tag\" }";
-                    CustomApiUtil.setCustomResponse(request, "application/json", exampleString);
+                    PetCloudStoreApiUtil.setCustomResponse(request, "application/json", exampleString);
                     break;
                 }
             }

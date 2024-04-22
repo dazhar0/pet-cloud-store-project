@@ -36,7 +36,7 @@ public class Function {
 	private String APP_ID = System.getenv("appId") != null ? System.getenv("appId") : System.getProperty("appId");
 	private String API_KEY = System.getenv("apiKey") != null ? System.getenv("apiKey") : System.getProperty("apiKey");
 
-	protected String getApplicationInsightsTelemetry(String minsAgo) {
+	public String getApplicationInsightsTelemetry(String minsAgo) {
 		if (APP_ID == null || API_KEY == null) {
 			APP_ID = "";
 			API_KEY = "";

@@ -13,13 +13,13 @@ import org.springframework.web.context.request.NativeWebRequest;
 
 @RestController
 @RequestMapping("${custom.api.petstore.base-path:/v1}")
-public class PetCloudStoreApiController implements CustomPetsApi {
-	private static Logger customLogger = LoggerFactory.getLogger(CustomPetsApiController.class);
+public class PetCloudStoreApiController implements PetCloudStoresApi {
+	private static Logger customLogger = LoggerFactory.getLogger(PetCloudStoreApiController.class);
 
 	private final NativeWebRequest customRequest;
 
 	@org.springframework.beans.factory.annotation.Autowired
-	public CustomPetsApiController(NativeWebRequest request) {
+	public PetCloudStoreApiController(NativeWebRequest request) {
 		this.customRequest = request;
 	}
 

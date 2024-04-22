@@ -3,6 +3,8 @@ package org.openapitools.api;
 
 import org.springframework.web.context.request.NativeWebRequest;
 
+import io.github.adj5672.enumerateexception.exception.CustomRuntimeException;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
