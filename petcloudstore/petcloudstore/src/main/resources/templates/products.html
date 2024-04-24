@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head lang="en" th:replace="unique/head :: head"></head>
+<head lang="en" th:replace="head :: head"></head>
 
 <body>
-	<div lang="en" th:replace="unique/header :: header"></div>
+	<div lang="en" th:replace="header :: header"></div>
 	<div
-		class="unique-pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-		<h1 class="unique-display-4">Explore Our Product Selection</h1>
+		class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+		<h1 class="display-4">Explore Our Product Selection</h1>
 		<table class="table">
-			<div th:if="${unique_products} != null">
-				<tr th:each="unique_product, iStat : ${unique_products}">
+			<div th:if="${products} != null">
+				<tr th:each="product, iStat : ${products}">
 					<td style="text-align: center !important;">
-						<center><img class="unique-thumbnail" th:src="@{${unique_product.photoURL}}" /></center>
+						<center><img class="thumbnail" th:src="@{${product.photoURL}}" /></center>
 						<div style="margin-bottom: 20px;">
-							<span style="font-weight: bold;" th:text="${unique_product.name}" />
+							<span style="font-weight: bold;" th:text="${product.name}" />
 						</div>
 						<div style="margin-bottom: 20px;">
-							<a th:onclick="'unique_updatecart(\'' + ${unique_product.id} + '\');'"
+							<a th:onclick="'updatecart(\'' + ${product.id} + '\');'"
 								style="font-weight: bold; text-decoration: none; color: black;">
-								<button class="unique-btn btn btn-outline-primary" type="submit">Add
+								<button class="btn btn btn-outline-primary" type="submit">Add
 									to Cart</button>
 							</a>
 						</div>
@@ -28,17 +28,17 @@
 			</div>
 		</table>
 	</div>
-	<form action="unique_updatecart" method="post" id="unique_addProduct">
-		<input type="hidden" th:if="${unique_csrf}" th:name="${unique_csrf.parameterName}"
-			th:value="${unique_csrf.token}" /> <input type="hidden" id="unique_productId"
+	<form action="updatecart" method="post" id="addProduct">
+		<input type="hidden" th:if="${csrf}" th:name="${csrf.parameterName}"
+			th:value="${csrf.token}" /> <input type="hidden" id="productId"
 			name="productId" value="">
 	</form>
-	<div lang="en" th:replace="unique/footer :: footer"></div>
-	<div lang="en" th:replace="unique/disclaimer :: disclaimer"></div>
+	<div lang="en" th:replace="footer :: footer"></div>
+	<div lang="en" th:replace="disclaimer :: disclaimer"></div>
 	<script language="javascript">
 			function unique_updatecart(productId) {
-				document.getElementById('unique_productId').value = productId;
-				document.getElementById('unique_addProduct').submit();
+				document.getElementById('productId').value = productId;
+				document.getElementById('addProduct').submit();
 			}
 		</script>
 </body>
