@@ -3,7 +3,7 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: #00039e;
+  background-color: #eff0f5;
   color: white;
   text-align: center;
   padding: 20px;
@@ -61,7 +61,7 @@ a {
 	}
 	.banner {
 		width: 90%;
-		filter: drop-shadow(2px 2px 5px black);
+		filter: drop-shadow(2px 2px 5px rgb(244, 241, 241));
 	}
 }
 
@@ -80,7 +80,7 @@ figure {
 	}
 	.banner {
 		width: 60%;
-		filter: drop-shadow(2px 2px 5px black);
+		filter: drop-shadow(2px 2px 5px rgb(247, 246, 246));
 	}
 	.azureimagesmall {
 	width: 70%;
