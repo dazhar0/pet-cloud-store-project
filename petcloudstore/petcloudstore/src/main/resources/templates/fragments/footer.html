@@ -4,24 +4,6 @@
 </head>
 <body>
 	<div th:fragment="footer">
-		<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-		<script>
-			$(document).click(function (e) {    
-				if(e.target.innerHTML.includes('sm-'))
-				{
-					e.preventDefault();
-					window.location.href = "/soulmachines";
-				}
-			});
-		</script>
-		<script
-		src="https://static.soulmachines.com/widget-snippet-1.12.0.min.js"
-		data-sm-api-key="eyJzb3VsSWQiOiJkZG5hLW1pY3Jvc29mdC0yMDIzLS1uZXctcHJvamVjdC1iY2MyMjMyIiwiYXV0aFNlcnZlciI6Imh0dHBzOi8vZGguYXouc291bG1hY2hpbmVzLmNsb3VkL2FwaS9qd3QiLCJhdXRoVG9rZW4iOiJhcGlrZXlfdjFfYjM1YTQzYmEtYjQzMC00MDUyLTlmN2ItNGQzMjgyMWUwNzEwIn0="
-		data-sm-position="center"
-		data-sm-greeting="Hello and welcome to the Azure Pet Store, How can I help you?"
-		data-sm-layout="fullFrame"
-		data-sm-profile-picture="https://github.com/chtrembl/azure-cloud/blob/main/petstore/petstoreapp/soulmachines-react-app/src/img/placeholder-headshot.png?raw=true">
-		</script>
 	
 		<div class="container">
 			<footer class="pt-4 my-md-5 pt-md-5 border-top">
@@ -41,21 +23,21 @@
 						<h5>Dog Products</h5>
 						<ul class="list-unstyled text-small">
 							<li><a class="text-muted" href="/dogbreeds?category=Dog"
-								style="color: #3C7BB7 !important;">Shop by breeds</a></li>
+								style="color: #000000 !important;">Shop by breeds</a></li>
 						</ul>
 					</div>
 					<div class="col-6 col-md">
 						<h5>Cat Products</h5>
 						<ul class="list-unstyled text-small">
 							<li><a class="text-muted" href="/catbreeds?category=Cat"
-								style="color: #3C7BB7 !important;">Shop by breeds</a></li>
+								style="color: #000000 !important;">Shop by breeds</a></li>
 						</ul>
 					</div>
 					<div class="col-6 col-md">
 						<h5>Fish Products</h5>
 						<ul class="list-unstyled text-small">
 							<li><a class="text-muted" href="/fishbreeds?category=Fish"
-								style="color: #3C7BB7 !important;">Shop by breeds</a></li>
+								style="color: #000000 !important;">Shop by breeds</a></li>
 						</ul>
 					</div>
 				</div>
@@ -79,44 +61,6 @@
 			</script>
 		</div>
 		
-		<script src="https://cdn.jsdelivr.net/npm/@microsoft/signalr@3.0.0/dist/browser/signalr.min.js"></script>  
-		<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
-		
-		<input type="hidden" id="signalRNegotiationURL" th:value="${signalRNegotiationURL}"/>
-		
-		<script>
-			
-			const apiBaseUrl = document.getElementById('signalRNegotiationURL').value;
-		
-			console.log(apiBaseUrl);
-			
-			if(apiBaseUrl.length > 0)
-			{
-				const data = {
-				  currentUsersUpdated: '',
-			      messages: [],
-			      ready: false
-			    }
-			
-			    const connection = new signalR.HubConnectionBuilder()
-			      .withUrl(`${apiBaseUrl}/signalr`)
-			      .withAutomaticReconnect()
-			      .configureLogging(signalR.LogLevel.Information)
-			      .build()
-			
-			    connection.on('currentUsersUpdated', currentUsersUpdated)
-			
-			    connection.start()
-			      .then(() => data.ready = true)
-			      .catch(console.error)
-			
-			    let counter = 0
-			    function currentUsersUpdated(message) {
-			    	document.getElementById('currentUsers').innerHTML=message;
-			      	data.messages.unshift(message)
-			    }
-			}
-		</script>
 
 	</div>
 </body>
