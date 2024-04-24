@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
-<head lang="en" th:replace="head :: head"></head>
+<head lang="en" th:replace="fragments/head :: head"></head>
 
 <body>
-	<div lang="en" th:replace="header :: header"></div>
+	<div lang="en" th:replace="fragments/header :: header"></div>
 	<div
 		class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-		<h1 class="display-4">Explore Our Product Selection</h1>
+		<h1 class="display-4">Select a Product</h1>
 		<table class="table">
 			<div th:if="${products} != null">
 				<tr th:each="product, iStat : ${products}">
@@ -19,8 +19,8 @@
 						<div style="margin-bottom: 20px;">
 							<a th:onclick="'updatecart(\'' + ${product.id} + '\');'"
 								style="font-weight: bold; text-decoration: none; color: black;">
-								<button class="btn btn btn-outline-primary" type="submit">Add
-									to Cart</button>
+								<button class="btn btn-outline-primary" type="submit">Add
+									to cart</button>
 							</a>
 						</div>
 					</td>
@@ -29,14 +29,14 @@
 		</table>
 	</div>
 	<form action="updatecart" method="post" id="addProduct">
-		<input type="hidden" th:if="${csrf}" th:name="${csrf.parameterName}"
-			th:value="${csrf.token}" /> <input type="hidden" id="productId"
+		<input type="hidden" th:if="${_csrf}" th:name="${_csrf.parameterName}"
+			th:value="${_csrf.token}" /> <input type="hidden" id="productId"
 			name="productId" value="">
 	</form>
-	<div lang="en" th:replace="footer :: footer"></div>
-	<div lang="en" th:replace="disclaimer :: disclaimer"></div>
+	<div lang="en" th:replace="fragments/footer :: footer"></div>
+	<div lang="en" th:replace="fragments/disclaimer :: disclaimer"></div>
 	<script language="javascript">
-			function unique_updatecart(productId) {
+			function updatecart(productId) {
 				document.getElementById('productId').value = productId;
 				document.getElementById('addProduct').submit();
 			}
