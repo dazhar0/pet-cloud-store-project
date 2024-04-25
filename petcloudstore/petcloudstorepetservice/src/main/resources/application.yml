@@ -10,9 +10,9 @@ spring:
   application:
     name: petstorepetservice
 
-#azure:
-#    application-insights:
-#      instrumentation-key: ${PETSTORESERVICES_AI_INSTRUMENTATION_KEY}
+azure:
+   application-insights:
+     instrumentation-key: 706772c8-6c97-4695-87c3-59c59848e4f7
 
 management:
   endpoints:

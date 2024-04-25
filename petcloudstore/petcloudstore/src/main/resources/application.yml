@@ -28,7 +28,7 @@ petstore:
       fixedRate: ${SIGNALR_UPDATE_FIXEDRATE:60000}
 server:
   port: ${PETSTOREAPP_SERVER_PORT:8080}
-#azure:
+azure:
 #  activedirectory:
 #    b2c:
 #      tenant: ${PETSTOREAPP_B2C_TENANT}
@@ -41,8 +41,8 @@ server:
 #        sign-up-or-sign-in: B2C_1_signupsignin
 #        profile-edit: B2C_1_profileediting
 #        password-reset: B2C_1_passwordreset
-#  application-insights:
-#      instrumentation-key: ${PETSTOREAPP_AI_INSTRUMENTATION_KEY}
+ application-insights:
+     instrumentation-key: 706772c8-6c97-4695-87c3-59c59848e4f7
 management:
   endpoints:
     web:
