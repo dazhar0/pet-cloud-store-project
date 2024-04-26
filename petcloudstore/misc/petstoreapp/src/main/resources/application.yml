@@ -13,7 +13,7 @@ azure:
     b2c:
       tenant: fc120f97-856b-4f0c-a6a0-ad60aa98032b
       oidc-enabled: true
-      client-id: $5015be0a-9c45-4821-a0dc-cacf02181571
+      client-id: 5015be0a-9c45-4821-a0dc-cacf02181571
       client-secret: d587199f-baf7-4e4f-9816-7e76b8325a49
       reply-url: https://dazharpetcloudstore.azurewebsites.net/home on Azure or Windows localhost http://localhost:8080/home
       logout-success-url: https://dazharpetcloudstore.azurewebsites.net/home on Azure or Windows localhost http://localhost:8080/home
