@@ -16,7 +16,7 @@
 				<tr><td style="width:50px;"><a class="p-2 text-dark" href="/">
 				<img
 					src="content/azure.png"
-					class="azureimagesmall" /></a></td><td>Hi <span th:text="${userName}"/>, Welcome to the Azure Pet Store!</td></tr>
+					class="azureimagesmall" /></a></td><td>Welcome to the Pet Store!</td></tr>
 			</table>
 			<p/>
 			<div th:if="${user} != null">
@@ -30,8 +30,7 @@
 					<button class="btn btn-outline-primary" type="submit">Logout</button>
 				</form>
 			</div>
-			<div th:if="${user} == null">
-				<div th:if="${containerEnvironment.securityEnabled}">
+			
   					<a class="btn btn-outline-primary" href="/oauth2/authorization/B2C_1_signupsignin">Sign up / Sign in</a>
 	  			</div>
   			</div>
