@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: dazharpetcloudstoreproject 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dazharpetcloudstoreproject
+  template:
+    metadata:
+      labels:
+        app: dazharpetcloudstoreproject 
+    spec:
+      containers:
+        - name: dazharpetcloudstoreproject 
+          image: petcloudstorecr.azurecr.io/dazharpetcloudstoreproject
+          ports:
+          - containerPort: 80
