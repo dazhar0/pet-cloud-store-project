@@ -4,6 +4,8 @@ metadata:
   name: ingress-petstoreservices
   annotations:
     nginx.ingress.kubernetes.io/ingress-class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /static/$2
 spec:
   rules:
     - http:
@@ -19,7 +21,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: aks-petcloudstoreproductservice
+                name: aks-petstoreproductservice
                 port:
                   number: 80
           - path: /petstoreorderservice
@@ -29,3 +31,4 @@ spec:
                 name: aks-petstoreorderservice
                 port:
                   number: 80
+

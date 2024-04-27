@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aks-petcloudstoreorderservice
+  name: aks-petstoreorderservice
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: aks-petcloudstoreorderservice
+      app: aks-petstoreorderservice
   template:
     metadata:
       labels:
-        app: aks-petcloudstoreorderservice
+        app: aks-petstoreorderservice
     spec:
       nodeSelector:
         "kubernetes.io/os": linux
         agentpool: nodepool1
       containers:
       - name: petstoreorderservice
-        image: crpetcloudstore.azurecr.io/petstoreorderservice:latest
+        image: petcloudstorecr.azurecr.io/petstoreorderservice:latest
         resources:
           requests:
             cpu: 250m
@@ -30,13 +30,13 @@ spec:
         env:
         - name: PETSTOREORDERSERVICE_SERVER_PORT
           value: "80"
-        - name: spring.config.name
-          value: application_with_everything_enabled
-        - name: PETSTORESERVICES_AI_INSTRUMENTATION_KEY
-          valueFrom:
-            secretKeyRef:
-              name: aisecretkey
-              key: secret
+        # - name: spring.config.name
+        #   value: application_with_everything_enabled
+        # - name: PETSTORESERVICES_AI_INSTRUMENTATION_KEY
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: aisecretkey
+        #       key: secret
         - name: PETSTOREPRODUCTSERVICE_URL
           value: "http://aks-petstoreproductservice/"
         - name: PETSTOREORDERSERVICE_EMAIL_TOPIC_CONNECTION_STRING
@@ -55,12 +55,12 @@ spec:
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: aks-petcloudstoreorderservice-hpa
+  name: aks-petstoreorderservice-hpa
 spec:
   maxReplicas: 1
   minReplicas: 1
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: aks-petcloudstoreorderservice
+    name: aks-petstoreorderservice
   targetCPUUtilizationPercentage: 90

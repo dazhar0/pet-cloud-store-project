@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: aks-petcloudstoreorderservice 
+  name: aks-petstoreorderservice 
 spec:
   type: ClusterIP
   ports:
   - port: 80
     targetPort: 8080
   selector:
-    app: aks-petcloudstoreorderservice
+    app: aks-petstoreorderservice

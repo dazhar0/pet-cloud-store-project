@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aks-petcloudstoreproductservice
+  name: aks-petstoreproductservice
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: aks-petcloudstoreproductservice
+      app: aks-petstoreproductservice
   template:
     metadata:
       labels:
-        app: aks-petcloudstoreproductservice
+        app: aks-petstoreproductservice
     spec:
       nodeSelector:
         "kubernetes.io/os": linux
         agentpool: nodepool1
       containers:
       - name: petstoreproductservice
-        image: crpetcloudstore.azurecr.io/petstoreproductservice:latest
+        image: petcloudstorecr.azurecr.io/petstoreproductservice:latest
         resources:
           requests:
             cpu: 250m
@@ -30,18 +30,18 @@ spec:
         env:
           - name: PETSTOREPRODUCTSERVICE_SERVER_PORT
             value: "80"
-          - name: spring.config.name
-            value: application_with_everything_enabled
-          - name: APPLICATIONINSIGHTS_CONNECTION_STRING
-            valueFrom:
-              secretKeyRef:
-                name: aisecretkey
-                key: secret
+          # - name: spring.config.name
+          #   value: application_with_everything_enabled
+          # - name: APPLICATIONINSIGHTS_CONNECTION_STRING
+          #   valueFrom:
+          #     secretKeyRef:
+          #       name: aisecretkey
+          #       key: secret
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: aks-petcloudstoreproductservice-hpa
+  name: aks-petstoreproductservice-hpa
 spec:
   maxReplicas: 4 # define max replica count
   minReplicas: 1  # define min replica count
