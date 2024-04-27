@@ -11,12 +11,12 @@ server:
 azure:
   activedirectory:
     b2c:
-      tenant: fc120f97-856b-4f0c-a6a0-ad60aa98032b
+      tenant: ${PETSTOREAPP_B2C_TENANT}
       oidc-enabled: true
-      client-id: 5087e542a-f20c-4f25-aa9c-1587d46f22cd
-      client-secret: 7d625378-84d7-4e31-a10b-96b87d6339fc
-      reply-url: https://dazharpetcloudstore.azurewebsites.net/home on Azure or Windows localhost http://localhost:8080/home
-      logout-success-url: https://dazharpetcloudstore.azurewebsites.net/home on Azure or Windows localhost http://localhost:8080/home
+      client-id: ${PETSTOREAPP_B2C_CLIENT_ID}
+      client-secret: ${PETSTOREAPP_B2C_CLIENT_SECRET}
+      reply-url: ${PETSTOREAPP_B2C_REPLY_URL}
+      logout-success-url: ${PETSTOREAPP_B2C_LOGOUT_URL}
       user-flows:
         sign-up-or-sign-in: B2C_1_signupsignin
         profile-edit: B2C_1_profileediting
