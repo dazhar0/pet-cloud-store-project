@@ -18,9 +18,9 @@
 			</nav>
 			<div th:if="${user} != null">
 				<a class="p-2 text-dark"
-					href="/oauth2/authorization/B2C_1_profileediting">Edit Profile</a>
+					href="https://petcloudstoreapp.b2clogin.com/petcloudstoreapp.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1_profileediting&client_id=a806e9d0-e204-48ce-bdba-0a43cfc3d34c&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fpetcloudstoreapp.azurewebsites.net%2Flogin&scope=openid&response_type=code&prompt=login">Edit Profile</a>
 				<a class="p-2 text-dark"
-					href="/oauth2/authorization/B2C_1_passwordreset">Reset Password</a>
+					href="https://petcloudstoreapp.b2clogin.com/petcloudstoreapp.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1_passwordreset&client_id=a806e9d0-e204-48ce-bdba-0a43cfc3d34c&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fpetcloudstoreapp.azurewebsites.net%2Flogin&scope=openid&response_type=code&prompt=login">Reset Password</a>
 				<a class="p-2 text-dark" href="/claims">View AD Claims</a>
 				<form style="display: inline" method="post" action="/logout">
 					<button class="btn btn-outline-primary" type="submit">Log
@@ -29,7 +29,7 @@
 			</div>
 			<div >
 				<div >
-  					<a class="btn btn-outline-primary" href="/oauth2/authorization/B2C_1_signupsignin">Sign up / Sign in</a>
+  					<a class="btn btn-outline-primary" href="https://petcloudstoreapp.b2clogin.com/petcloudstoreapp.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1_signupsignin&client_id=a806e9d0-e204-48ce-bdba-0a43cfc3d34c&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fpetcloudstoreapp.azurewebsites.net%2Flogin&scope=openid&response_type=code&prompt=login">Sign up / Sign in</a>
 	  			</div>
   			</div>
   		</div>
