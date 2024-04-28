@@ -8,7 +8,7 @@ import com.microsoft.azure.spring.autoconfigure.b2c.AADB2COidcLoginConfigurer;
 
 @Component
 @ConditionalOnProperty({ "azure.activedirectory.b2c.tenant", "azure.activedirectory.b2c.client-id",
-		 "azure.activedirectory.b2c.logout-success-url" })
+		"azure.activedirectory.b2c.client-secret", "azure.activedirectory.b2c.logout-success-url" })
 
 public class AADB2COidcLoginConfigurerWrapper {
 
