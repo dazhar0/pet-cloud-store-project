@@ -34,7 +34,7 @@ azure:
      tenant: ${PETSTOREAPP_B2C_TENANT}
      oidc-enabled: true
      client-id: ${PETSTOREAPP_B2C_CLIENT_ID}
-     client-secret: ${PETSTOREAPP_B2C_CLIENT_SECRET}
+    # client-secret: ${PETSTOREAPP_B2C_CLIENT_SECRET}
      reply-url: ${PETSTOREAPP_B2C_REPLY_URL}
      logout-success-url: ${PETSTOREAPP_B2C_LOGOUT_URL}
      user-flows:
